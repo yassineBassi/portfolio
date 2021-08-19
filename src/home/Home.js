@@ -69,13 +69,13 @@ class Home extends Component {
 
     render() {
         return (
-            <div className="bg-gray-800">
+            <div className="bg-gradient-to-b from-gray-700 to-gray-800 w-100 overflow-hidden">
                 {this.state.stars.map((star, ind) => (
                     <div key={ind} className="w-1 star h-1 z-10 bg-white rounded-full absolute" style={{top: star.top, left: star.left}}></div>
                 ))}
                 <Header></Header>
                 <About></About>
-                <div className="w-100 text-center">
+                <div className="w-100 text-center px-6">
                     <img className="mx-auto w-40 h-40 rounded-full ring-1 ring-indigo-500" src={ process.env.PUBLIC_URL + '/avatar.jpg' } alt="" />
                     <span className="text-gray-400 text-4xl mt-10 block">''this is my quote in development ok''</span>
                 </div>

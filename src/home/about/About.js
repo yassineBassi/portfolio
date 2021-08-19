@@ -15,7 +15,7 @@ class About extends Component {
                         <span className="text-4xl font-bold">ABOUT</span>
                         <div className="bg-white h-1 w-16 mx-auto mt-3"></div>
                     </div>
-                    <div className="grid grid-cols-4 w-full mt-2">
+                    <div className="grid grid-cols-1 xl:grid-cols-4 md:grid-cols-2 w-full mt-2">
                         <div className="mt-16 mx-6">
                             <span className="inline-block text-3xl w-20 h-20 rounded-full mx-auto text-indigo-900 bg-white">
                                 <i className="fas fa-tachometer-alt m-6"></i>
@@ -48,7 +48,7 @@ class About extends Component {
                             <span className="block">Websites don't have to be static, I love making pages come to life.</span>
                         </div>
                     </div>
-                </div>
+                </div> */}
             </div>
         );
     }

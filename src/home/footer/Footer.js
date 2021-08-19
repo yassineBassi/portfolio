@@ -8,16 +8,18 @@ class Footer extends Component {
 
     render() {
         return (
-            <div className="text-white text-center">
-                <div className="bg-indigo-900">
-                    <div className="bg-gray-800 h-40 relative rounded-bl-full rounded-br-full w-full"></div>
+            <div className="text-white text-center mt-20">
+                <div className="h-40 bg-transparent z-40 relative">
+                    <svg height="100%" width="100%" viewBox="0 0 100 100" className="fill-current text-indigo-900" preserveAspectRatio="none">
+                        <polygon points="0,0 50,100 100,0 100,100  0,100" />
+                    </svg>
                 </div>
                 <div className="relative z-10 bg-indigo-900 pt-16 pb-6">
                     <div className='my-5'>
                         <div className="text-4xl font-bold uppercase">Contact</div>
                         <div className="bg-white h-1 w-20 mx-auto mt-3"></div>
                     </div>
-                    <span className="block text-xl">Have a question or want to work together?</span>
+                    <span className="block text-xl px-4">Have a question or want to work together?</span>
                     <div className="grid grid-cols-12 my-3">
                         <div className="col-span-2"></div>
                         <div className="col-span-8 pb-10">

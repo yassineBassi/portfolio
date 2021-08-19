@@ -38,17 +38,26 @@ class Projects extends Component {
                 <div className="w-full flex my-8">
                     <ul className="mx-auto">
                     { categories.map((category, ind) => (
-                        <li key={ind} className={"inline-block px-4 text-xl uppercase cursor-pointer hover:text-xl border-b border-transparent hover:border-white p-2 bg-transparent text-gray-400 " + (selectedCategory === category ? "border-b border-white" : "")}>
+                        <li key={ind} className={"inline-block px-4 text-xl uppercase cursor-pointer hover:text-xl border mx-1 border-dashed border-transparent hover:border-white p-2 bg-transparent text-gray-400 " + (selectedCategory === category ? "border-dashed border border-white" : "")}>
                             { category }
                         </li>
                     )) }
                     </ul>
                 </div>
-                <div className="mb-8 mx-80 grid grid-cols-3">
+                <div className="mb-8 mx-6 lg:mx-40 grid grid-cols-1">
                     { projects.map((project, ind) => (
+                        <div className="grid grid-cols-2 justify-center">
+                            <img src={ project.image } alt="" />
+                            <div className="none">
+
+                            </div>
+                        </div> 
+                    )) }
+                        
+                    {/* { projects.map((project, ind) => (
                         <div key={ind} className="relative z-10 border-4 border-gray-900 hover:border-transparent overflow-hidden relative shadow-xl hover:shadow-sm project">
                             <img src={ project.image } alt="" />
-                            <div className="project-details flex justify-center items-center">
+                            <div className="flex justify-center items-center">
                                 <div className="text-white text-center overflow-hidden">
                                     <span className="project-info">
                                         <span className="text-2xl font-bold">Project Name</span>
@@ -60,7 +69,7 @@ class Projects extends Component {
                                 </div>
                             </div>
                         </div>
-                    )) }
+                    )) } */}
                 </div>
             </div>
         );
