@@ -62,6 +62,26 @@ function Home() {
         marginTop: step === 3 ? 0 : -550
     });
 
+    const arrowUpAnim = useSpring({
+        from: {
+            transform: 'translateY(0px)'
+        },
+        to: {
+            transform: step !== 0 ? 'translateY(20px)' : 'translateY(0px)'
+        },
+        loop: true
+    });
+
+    const arrowDownAnim = useSpring({
+        from: {
+            transform: 'translateY(-20px)'
+        },
+        to: {
+            transform: 'translateY(0px)'
+        },
+        loop: true
+    });
+
     const nextStep = () => {
         setStep(step => step + 1);
     }
@@ -74,21 +94,21 @@ function Home() {
     }, [])
 
     return (
-        <div className="bg-gradient-to-b from-gray-900 to-gray-900 flex flex-col w-full h-full">
+        <div className="bg-gray-900 flex flex-col w-full h-full">
             <Stars></Stars>
-            <div className="w-full text-center mt-2">
+            <animated.div style={arrowUpAnim} className="w-full text-center pt-2">
                 <button 
                     onClick={ previousStep }
-                    className="text-2xl uppercase text-blue-500 font-bold"
+                    className={"text-2xl uppercase font-bold " + (step === 0 ? "text-gray-500" : "text-blue-500") }
                 >
                     <span className="flex flex-col items-center">
                         <FeatherIcon icon="chevron-up" size="48" />
                     </span>
                 </button>
-            </div>
+            </animated.div>
             
-            <div className="flex-auto overflow-y-auto">
-                <animated.div style={headerAnim}>
+            <div className="flex-auto overflow-y-auto overflow-x-hidden">
+                <animated.div className="h-full" style={headerAnim}>
                     <Header></Header>
                 </animated.div>
                 <animated.div style={aboutAnim}>
@@ -102,7 +122,7 @@ function Home() {
                 </animated.div>
             </div>
 
-            <div className="w-full mt-2 flex items-end justify-center">
+            <animated.div style={arrowDownAnim} className="w-full mt-2 flex items-end justify-center pb-2">
                 <button 
                     onClick={ nextStep }
                     className="text-2xl uppercase text-blue-500 font-bold"
@@ -111,7 +131,7 @@ function Home() {
                         <FeatherIcon icon="chevron-down" size="48" />
                     </span>
                 </button>
-            </div>
+            </animated.div>
         </div>
     );
 }

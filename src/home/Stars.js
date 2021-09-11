@@ -56,7 +56,7 @@ function Stars() {
     }
     
     const initStars = () => {
-        for(let i = 0; i < 50; i++){
+        for(let i = 0; i < 25; i++){
             const star = {
                 top: random(pageHeight),
                 left: random(pageWidth)
