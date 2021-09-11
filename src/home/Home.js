@@ -1,90 +1,119 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Home.css'
 import About from './about/About';
-import Projects from './projects/Projects';
-import Footer from './footer/Footer';
+import Stars from './Stars';
+import { animated, useSpring } from 'react-spring';
 import Header from './header/Header';
+import FeatherIcon from 'feather-icons-react';
+import Footer from './footer/Footer';
+import Projects from './projects/Projects';
 
-class Home extends Component {
+function Home() {
 
-    constructor(){
-        super()
-        this.state = { width: 0, height: 0, stars: [] };
+    const [step, setStep] = useState(-1);
+    // const [scroll, setScroll] = useState(0);
+
+    // const home = useRef(null)
+    // const about = useRef(null)
+    // const projects = useRef(null)
+    // const contact = useRef(null)
+
+    // const navbarItems = [
+    //     {
+    //         text: 'home',
+    //         ref: home
+    //     },
+    //     {
+    //         text: 'about',
+    //         ref: about
+    //     },
+    //     {
+    //         text: 'Projects',
+    //         ref: projects
+    //     },
+    //     {
+    //         text: 'Contact',
+    //         ref: contact
+    //     }
+    // ]
+
+
+    const headerAnim = useSpring({
+        opacity: step === 0 ? 1 : 0,
+        display: step === 0 ? 'block' : 'none',
+        marginTop: step === 0 ? 0 : -550
+    });
+
+    const aboutAnim = useSpring({
+        opacity: step === 1 ? 1 : 0,
+        display: step === 1 ? 'block' : 'none',
+        marginTop: step === 1 ? 0 : 500
+    });
+
+    const projectsAnim = useSpring({
+        opacity: step === 2 ? 1 : 0,
+        display: step === 2 ? 'block' : 'none',
+        marginTop: step === 2 ? 0 : -550
+    });
+
+    const footerAnim = useSpring({
+        opacity: step === 3 ? 1 : 0,
+        display: step === 3 ? 'block' : 'none',
+        marginTop: step === 3 ? 0 : -550
+    });
+
+    const nextStep = () => {
+        setStep(step => step + 1);
+    }
+    const previousStep = () => {
+        setStep(step => step - 1);
     }
 
-    componentDidMount() {
-        console.log('hi')
-        setTimeout(() => {
-            this.setDimensions(); 
-            this.initStars();
-        }, 1000);
-        setInterval(() => {
-            this.setStars();
-        }, 50);
-        window.addEventListener('resize', this.setDimensions); 
-    }
-    
-    //remove listener on page exit
-    componentWillUnmount() {
-        window.removeEventListener('resize', this.setDimensions); 
-    }
+    useEffect(() => {
+        setStep(0);
+    }, [])
 
-    setDimensions = () => {
-        console.log('set dimensions')
-        this.setState({ 
-            width: document.body.clientWidth, 
-            height: document.body.clientHeight
-        });
-    }
-
-    initStars(){
-        const stars = []
-        for(let i = 0; i < 100; i++){
-            const star = {
-                top: this.random(this.state.height),
-                left: this.random(this.state.width)
-            }
-            console.log(star);
-            stars.push(star)
-            
-        }
-        
-        this.setState({stars: stars});
-        console.log(this.state.stars);
-    }
-
-    setStars(){
-        this.setState({stars: this.state.stars.map(
-            star => ({
-                top: star.top > document.body.offsetHeight ? 0 : (star.top + 5),
-                left: star.top > document.body.offsetHeight ? this.random(this.state.width) : star.left
-            }))
-        });
-    }
-
-    random(max){
-        console.log(max)
-        return Math.random() * max;
-    }
-
-    render() {
-        return (
-            <div className="bg-gradient-to-b from-gray-700 to-gray-800 w-100 overflow-hidden">
-                {this.state.stars.map((star, ind) => (
-                    <div key={ind} className="w-1 star h-1 z-10 bg-white rounded-full absolute" style={{top: star.top, left: star.left}}></div>
-                ))}
-                <Header></Header>
-                <About></About>
-                <div className="w-100 text-center px-6">
-                    <img className="mx-auto w-40 h-40 rounded-full ring-1 ring-indigo-500" src={ process.env.PUBLIC_URL + '/avatar.jpg' } alt="" />
-                    <span className="text-gray-400 text-4xl mt-10 block">''this is my quote in development ok''</span>
-                </div>
-                <Projects></Projects>
-                <Footer></Footer>
+    return (
+        <div className="bg-gradient-to-b from-gray-900 to-gray-900 flex flex-col w-full h-full">
+            <Stars></Stars>
+            <div className="w-full text-center mt-2">
+                <button 
+                    onClick={ previousStep }
+                    className="text-2xl uppercase text-blue-500 font-bold"
+                >
+                    <span className="flex flex-col items-center">
+                        <FeatherIcon icon="chevron-up" size="48" />
+                    </span>
+                </button>
             </div>
-        );
-    }
-}
+            
+            <div className="flex-auto overflow-y-auto">
+                <animated.div style={headerAnim}>
+                    <Header></Header>
+                </animated.div>
+                <animated.div style={aboutAnim}>
+                    <About></About>
+                </animated.div>
+                <animated.div style={projectsAnim}>
+                    <Projects></Projects>
+                </animated.div>
+                <animated.div style={footerAnim}>
+                    <Footer></Footer>
+                </animated.div>
+            </div>
 
+            <div className="w-full mt-2 flex items-end justify-center">
+                <button 
+                    onClick={ nextStep }
+                    className="text-2xl uppercase text-blue-500 font-bold"
+                >
+                    <span className="flex flex-col items-center">
+                        <FeatherIcon icon="chevron-down" size="48" />
+                    </span>
+                </button>
+            </div>
+        </div>
+    );
+}
 
 export default Home;

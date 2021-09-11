@@ -31,22 +31,22 @@ class Projects extends Component {
     render() {
         return (
             <div className='w-full pt-10'>
-                <div className="text-center">
+                <div className="text-center mt-12">
                     <div className="text-4xl font-bold text-white uppercase">Projects</div>
                     <div className="bg-white h-1 w-20 mx-auto mt-3"></div>
                 </div>
                 <div className="w-full flex my-8">
                     <ul className="mx-auto">
                     { categories.map((category, ind) => (
-                        <li key={ind} className={"inline-block px-4 text-xl uppercase cursor-pointer hover:text-xl border mx-1 border-dashed border-transparent hover:border-white p-2 bg-transparent text-gray-400 " + (selectedCategory === category ? "border-dashed border border-white" : "")}>
+                        <li key={ind} className={"inline-block px-4 text-xl uppercase cursor-pointer hover:text-xl border-b-2 mx-1 border-dashed border-transparent hover:border-white p-2 bg-transparent text-gray-400 " + (selectedCategory === category ? "border-dashed border-b-2 border-white bg-white text-indigo-800" : "")}>
                             { category }
                         </li>
                     )) }
                     </ul>
                 </div>
-                <div className="mb-8 mx-6 lg:mx-40 grid grid-cols-1">
+                <div className="mb-8 mx-6 lg:mx-40 grid grid-cols-3">
                     { projects.map((project, ind) => (
-                        <div className="grid grid-cols-2 justify-center">
+                        <div key={ ind } className="">
                             <img src={ project.image } alt="" />
                             <div className="none">
 

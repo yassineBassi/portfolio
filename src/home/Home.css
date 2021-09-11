@@ -17,6 +17,3 @@
     transform-origin: 0 0;
     transform: rotate(-30deg) skewX(30deg);
   }
-  .star{
-    /* transition: top 1s, left 1s; */
-  }
