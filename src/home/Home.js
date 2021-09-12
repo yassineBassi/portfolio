@@ -7,10 +7,12 @@ import Header from './header/Header';
 import FeatherIcon from 'feather-icons-react';
 import Footer from './footer/Footer';
 import Projects from './projects/Projects';
+import Loader from './loader/loader';
+import {Animated} from "react-animated-css";
 
 function Home() {
 
-    const [step, setStep] = useState(-1);
+    const [step, setStep] = useState(-2);
     // const [scroll, setScroll] = useState(0);
 
     // const home = useRef(null)
@@ -37,7 +39,6 @@ function Home() {
     //     }
     // ]
 
-
     const headerAnim = useSpring({
         opacity: step === 0 ? 1 : 0,
         display: step === 0 ? 'block' : 'none',
@@ -47,7 +48,7 @@ function Home() {
     const aboutAnim = useSpring({
         opacity: step === 1 ? 1 : 0,
         display: step === 1 ? 'block' : 'none',
-        marginTop: step === 1 ? 0 : 500
+        marginTop: step === 1 ? 0 : -500
     });
 
     const projectsAnim = useSpring({
@@ -64,20 +65,20 @@ function Home() {
 
     const arrowUpAnim = useSpring({
         from: {
-            transform: 'translateY(0px)'
+            color: step <= 0 ? 'grey' : 'transparent'
         },
         to: {
-            transform: step !== 0 ? 'translateY(20px)' : 'translateY(0px)'
+            color:  step <= 0 ? 'grey' : '#a488ff'
         },
         loop: true
     });
 
     const arrowDownAnim = useSpring({
         from: {
-            transform: 'translateY(-20px)'
+            color: 'transparent'
         },
         to: {
-            transform: 'translateY(0px)'
+            color: '#a488ff'
         },
         loop: true
     });
@@ -86,33 +87,45 @@ function Home() {
         setStep(step => step + 1);
     }
     const previousStep = () => {
-        setStep(step => step - 1);
+        if(step > 0) setStep(step => step - 1);
     }
 
     useEffect(() => {
-        setStep(0);
+        setStep(-1);
+        setTimeout(() => {
+            setStep(0);
+        }, 3000);
     }, [])
 
     return (
         <div className="bg-gray-900 flex flex-col w-full h-full">
             <Stars></Stars>
-            <animated.div style={arrowUpAnim} className="w-full text-center pt-2">
-                <button 
-                    onClick={ previousStep }
-                    className={"text-2xl uppercase font-bold " + (step === 0 ? "text-gray-500" : "text-blue-500") }
-                >
-                    <span className="flex flex-col items-center">
-                        <FeatherIcon icon="chevron-up" size="48" />
-                    </span>
-                </button>
-            </animated.div>
+            {step >= 0 && (
+                <animated.div style={arrowUpAnim} className="w-full text-center pt-4">
+                    <button 
+                        onClick={ previousStep }
+                        className={"text-2xl uppercase font-bold " }
+                    >
+                        <span className="flex flex-col items-center">
+                            <FeatherIcon icon="chevron-up" size="48" />
+                        </span>
+                    </button>
+                </animated.div>
+            )}
             
-            <div className="flex-auto overflow-y-auto overflow-x-hidden">
+            <div className="flex-auto overflow-y-auto overflow-x-hidden py-3">
+                {step === -1 && (
+                    <Loader></Loader>
+                )}
                 <animated.div className="h-full" style={headerAnim}>
-                    <Header></Header>
+                    {step >= 0 && (
+                        <Header></Header>
+                    )}
                 </animated.div>
                 <animated.div style={aboutAnim}>
-                    <About></About>
+                    {step >= 1 && (
+                        <About></About>
+                    )}
                 </animated.div>
                 <animated.div style={projectsAnim}>
                     <Projects></Projects>
@@ -122,16 +135,18 @@ function Home() {
                 </animated.div>
             </div>
 
-            <animated.div style={arrowDownAnim} className="w-full mt-2 flex items-end justify-center pb-2">
-                <button 
-                    onClick={ nextStep }
-                    className="text-2xl uppercase text-blue-500 font-bold"
-                >
-                    <span className="flex flex-col items-center">
-                        <FeatherIcon icon="chevron-down" size="48" />
-                    </span>
-                </button>
-            </animated.div>
+            {step >= 0 && (
+                <animated.div style={arrowDownAnim} className="w-full mt-2 flex items-end justify-center pb-2">
+                    <button 
+                        onClick={ nextStep }
+                        className="text-2xl uppercase font-bold"
+                    >
+                        <span className="flex flex-col items-center">
+                            <FeatherIcon icon="chevron-down" size="48" />
+                        </span>
+                    </button>
+                </animated.div>
+            )}
         </div>
     );
 }

@@ -19,6 +19,7 @@ function CharAnimation(props) {
                 opacity: 1,
                 transform: 'translateY(0px)'
             },
+            loop: props.loop,
             delay: delay + (props.ind * speed)
         },
         'fade': {
@@ -28,6 +29,7 @@ function CharAnimation(props) {
             to: {
                 opacity: 1,
             },
+            loop: props.loop,
             delay: delay + (props.ind * speed)
         },
         'zoom': {
@@ -37,6 +39,7 @@ function CharAnimation(props) {
             to: {
                 fontSize: fontSize,
             },
+            loop: props.loop,
             delay: delay + (props.ind * speed)
         }
     }

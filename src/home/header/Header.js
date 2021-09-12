@@ -30,7 +30,7 @@ function Header(props) {
         to: {
             width: 500
         },
-        delay: 1000
+        delay: 200
     });
 
 
