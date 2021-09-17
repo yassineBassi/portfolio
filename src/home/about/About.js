@@ -69,7 +69,7 @@ function About(props) {
 
     const SkillDescriptionAnim = (ind) => useSpring({
         opacity: hoveredSkill === ind ? 1 : 0,
-        marginTop: hoveredSkill === ind ? '0px' : '-200px'
+        marginTop: hoveredSkill === ind ? '0px' : '-50px'
     })
 
     // const skillsAnim = useSpring({
@@ -137,10 +137,10 @@ function About(props) {
                 </div>
             </div>
             
-            <div className="mx-80 pb-8 relative z-20 text-white rounded-3xl text-center mt-4">
+            <div className="mx-80 pb-8 relative z-20 text-white rounded-3xl text-center mt-6">
                 <div className="grid grid-cols-1 xl:grid-cols-4 md:grid-cols-2 w-full mt-4">
                     { skills.map((skill, ind) => (
-                        <div key={ ind } className={"mt-4 mx-6 pb-6 " + (hoveredSkill === ind ? "border-b-2 border-white" : "" )}>
+                        <div key={ ind } className={"mt-4 mx-6 pb-4 " + (hoveredSkill === ind ? "border-b-2 border-white" : "" )}>
                             <div className="flex justify-center items-center text-white text-3xl mx-auto" style={{height: 80, width: 80}}>
                                 <animated.div 
                                     className={" rounded-full bg-white flex items-center justify-center " + (hoveredSkill === ind ? 'bg-indigo-900 text-white border-4 border-white' : 'bg-white text-indigo-900')} 

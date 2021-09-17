@@ -5,7 +5,7 @@
     height: 100%;
     width: 100%;
     z-index: 10;
-    background-color: rgb(32, 42, 54);
+    background-color: transparent;
     opacity: 0;
     transition: all 700ms;
 }*
@@ -28,9 +28,17 @@
     opacity: 1;
 }
 
+.project>img{
+    opacity: 1;
+    transition: opacity 200ms;
+}
+
 .project:hover>.project-details>*>.project-info{
     top: 0px!important;
 }
 .project:hover>.project-details>*>.learn-more-btn{
     top: 0px!important;
+}
+.project:hover>img{
+    opacity: 0;
 }
