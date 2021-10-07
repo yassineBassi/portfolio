@@ -1,72 +1,104 @@
 import React, { Component } from 'react';
+import TextAnimation from './../../animations/TextAnimation';
+import { animated, useSpring } from 'react-spring';
 
-class Footer extends Component {
+function Footer() {
 
-    scrollTop(){
+    const scrollTop = () => {
         window.scrollTo({ top: 0, behavior: 'smooth'})
     }
-
-    render() {
-        return (
-            <div className="text-white text-center mt-20">
-                <div className="h-40 bg-transparent z-40 relative">
-                    <svg height="100%" width="100%" viewBox="0 0 100 100" className="fill-current text-indigo-900" preserveAspectRatio="none">
-                        <polygon points="0,0 50,100 100,0 100,100  0,100" />
-                    </svg>
+    
+    const lineAnim = useSpring({
+        from: {
+            opacity:0,
+            marginLeft: -800
+        }, 
+        to: {
+            opacity:1,
+            marginLeft: 0
+        }, 
+        delay: 300
+    })
+    
+    return (
+        <div className="text-white text-center flex flex-col h-full lg:px-32">
+            <div className="relative flex-grow z-10 bg-indigo-900 pt-2 pb-4 md:pb-6 rounded-3xl flex flex-col">
+                <div className="relative text-white text-center">
+                    <span className="text-4xl font-bold">
+                        <TextAnimation
+                            type="zoom"
+                            fontSize={34}
+                            delay={300}
+                            speed={100}
+                            text="CONTACT"
+                        >
+                        </TextAnimation>
+                    </span>
+                    <animated.div style={ lineAnim } className="w-100 flex justify-center">
+                        <div className="bg-white h-1 w-16 mt-3"></div>
+                    </animated.div>
                 </div>
-                <div className="relative z-10 bg-indigo-900 pt-16 pb-6">
-                    <div className='my-5'>
-                        <div className="text-4xl font-bold uppercase">Contact</div>
-                        <div className="bg-white h-1 w-20 mx-auto mt-3"></div>
+                <span className="block text-xl px-2 md:px-4 mt-5">
+                    <TextAnimation
+                        text="Have a question or want to work together?"
+                        type="fade"
+                        speed={20}
+                    >
+                    </TextAnimation>
+                </span>
+                <div className="my-3 flex-grow flex flex-col items-center justify-between">
+                    <div className="w-full px-4 ">
+                        <input 
+                            type="text" 
+                            placeholder="Full Name" 
+                            className="block bg-gray-800 rounded-2xl px-4 py-6 my-4 w-full h-10 mx-auto focus:outline-none" 
+                        />
+                        <input 
+                            type="text" 
+                            placeholder="Enter E-mail" 
+                            className="block bg-gray-800 rounded-2xl px-4 my-4 py-6 w-full h-10 mx-auto focus:outline-none " 
+                        />
+                        <textarea 
+                            placeholder="Your Message" 
+                            className="block bg-gray-800 rounded-2xl px-4 my-4 py-3 w-full mx-auto focus:outline-none" 
+                            rows="10"
+                        ></textarea>
                     </div>
-                    <span className="block text-xl px-4">Have a question or want to work together?</span>
-                    <div className="grid grid-cols-12 my-3">
-                        <div className="col-span-2"></div>
-                        <div className="col-span-8 pb-10">
-                            <input 
-                                type="text" 
-                                placeholder="Full Name" 
-                                className="block bg-gray-800 rounded-2xl px-4 py-6 my-3 w-full h-10 mx-auto focus:outline-none" 
-                            />
-                            <input 
-                                type="text" 
-                                placeholder="Enter E-mail" 
-                                className="block bg-gray-800 rounded-2xl px-4 my-3 py-6 w-full h-10 mx-auto focus:outline-none " 
-                            />
-                            <textarea 
-                                placeholder="Your Message" 
-                                className="block bg-gray-800 rounded-2xl px-4 my-3 py-3 w-full mx-auto focus:outline-none" 
-                                rows="5"
-                            ></textarea>
-                            <button 
-                                className="uppercase py-2 float-center px-6 rounded-2xl text-xl font-bold border border-white text-white hover:bg-white hover:text-indigo-900 mt-4"
-                            >
-                                Submit
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div className="-mt-10 z-20 relative">
-                    <button onClick={this.scrollTop} className="w-14 h-14 rounded-2xl shadow-xl bg-white text-indigo-900 text-2xl">
-                        <i className="fas fa-angle-double-up"></i>
-                    </button>
-                </div>
-                <div className="bg-gray-800 w-full -mt-8">
-                    <div className="flex pt-14 justify-center">
-                        <a target="_blank" rel="noreferrer" href="https://www.linkedin.com/in/yassine-bassi-5b05ba192/" className="text-white bg-indigo-900 text-3xl bg-black-900 hover:bg-white hover:text-indigo-900 mx-3 rounded-xl">
-                            <i className="fab fa-linkedin-in m-4"></i>
-                        </a>
-                        <a target="_blank" rel="noreferrer" href="https://github.com/yassineBassi" className="text-white text-3xl bg-indigo-900 hover:bg-white hover:text-indigo-900 mx-3 rounded-xl">
-                            <i className="fab fa-github m-4"></i>
-                        </a>
-                    </div>
-                    <div className="pt-4 pb-2">
-                        <span className="text-lg">BASSI YASSINE @ 2021</span>
+                    <div className="w-full pb-8">
+                        <button 
+                            className="uppercase py-2 float-center px-6 rounded-2xl text-xl font-bold border border-white text-white hover:bg-white hover:text-indigo-900"
+                        >
+                            Submit
+                        </button>
                     </div>
                 </div>
             </div>
-        );
-    }
+            <div className="-mt-10 z-20 relative">
+                <button onClick={scrollTop} className="w-14 h-14 rounded-2xl shadow-xl bg-white text-indigo-900 text-2xl">
+                    <i className="fas fa-angle-double-up"></i>
+                </button>
+            </div>
+            <div className="w-full -mt-8">
+                <div className="flex pt-14 justify-center">
+                    <a target="_blank" rel="noreferrer" href="https://github.com/yassineBassi" className="text-white text-3xl bg-indigo-900 hover:bg-white hover:text-indigo-900 mx-3 rounded-xl w-16">
+                        <i className="fab fa-facebook-f m-4"></i>
+                    </a>
+                    <a target="_blank" rel="noreferrer" href="https://www.linkedin.com/in/yassine-bassi-5b05ba192/" className="text-white bg-indigo-900 text-3xl hover:bg-white hover:text-indigo-900 mx-3 rounded-xl w-16">
+                        <i className="fab fa-linkedin-in m-4"></i>
+                    </a>
+                    <a target="_blank" rel="noreferrer" href="https://github.com/yassineBassi" className="text-white text-3xl bg-indigo-900 hover:bg-white hover:text-indigo-900 mx-3 rounded-xl w-16">
+                        <i className="fab fa-github m-4"></i>
+                    </a>
+                    <a target="_blank" rel="noreferrer" href="https://github.com/yassineBassi" className="text-white text-3xl bg-indigo-900 hover:bg-white hover:text-indigo-900 mx-3 rounded-xl w-16">
+                        <i className="fab fa-google-plus-g m-4"></i>
+                    </a>
+                </div>
+                <div className="pt-4">
+                    <span className="text-lg">BASSI YASSINE @ 2021</span>
+                </div>
+            </div>
+        </div>
+    );
 }
 
 export default Footer;

@@ -28,24 +28,26 @@ function Header(props) {
             width: 0
         },
         to: {
-            width: 500
+            width: 450
         },
         delay: 200
     });
 
 
     return (
-        <div className="flex items-center justify-center h-full">
+        <div className="flex items-center justify-center h-full w-full">
             <div className="text-white">
                 <div className="p-5 flex justify-center">
-                        <animated.div style={logoAnim}>
-                                <img className="w-full relative z-20" src={process.env.PUBLIC_URL + './logo.png'} alt="" />
-                        </animated.div>
+                    <animated.div style={logoAnim}>
+                        <img className="w-full relative z-20" src={process.env.PUBLIC_URL + './logo.png'} alt="" />
+                    </animated.div>
                 </div>
-                <div className="w-full flex justify-center mt-2 px-4">
+                <div className="w-full flex justify-center mt-2 px-24">
                     <div className="text-center">
-                        <span className="text-4xl font-bold block">
-                            <TextAnimation type="up-down" text="Full Stack Developer"></TextAnimation>
+                        <span className="text-4xl font-bold block flex justify-center nowrap">
+                            <TextAnimation type="up-down" text="Full "></TextAnimation>
+                            <TextAnimation type="up-down" text="Stack "></TextAnimation>
+                            <TextAnimation type="up-down" text="Developer "></TextAnimation>
                         </span>
                         <animated.span style={textAnim} className="block mt-5">
                             I design and code beautifully simple things, and I love what I do
@@ -54,7 +56,7 @@ function Header(props) {
                 </div>
                 
                 <div className="w-full flex justify-center mt-2 px-4">
-                    <div className="w-100 flex justify-center items-center" style={{width: 500}}>
+                    <div className="flex justify-center items-center" style={{width: 500}}>
                         <animated.img className="relative z-20" src={process.env.PUBLIC_URL + '/developer.svg'} alt="" style={imageAnim} />
                     </div>
                 </div>

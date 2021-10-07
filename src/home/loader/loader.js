@@ -2,7 +2,6 @@ import React from 'react';
 
 // import { Container } from './styles';
 import TextAnimation from './../../animations/TextAnimation';
-import { Animated } from 'react-animated-css';
 
 function Loader() {
   return <div className="h-full overflow-hidden">
