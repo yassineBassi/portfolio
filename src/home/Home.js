@@ -43,7 +43,7 @@ function Home() {
             color: step <= 0 ? 'grey' : 'transparent'
         },
         to: {
-            color:  step <= 0 ? 'grey' : '#a488ff'
+            color:  step <= 0 ? 'grey' : '#09AA8D'
         },
         loop: true
     });
@@ -53,7 +53,7 @@ function Home() {
             color: step >= stepsLength - 1 ? 'grey' : 'transparent'
         },
         to: {
-            color: step > stepsLength - 1 ? 'grey' : '#a488ff'
+            color: step > stepsLength - 1 ? 'grey' : '#09AA8D'
         },
         loop: true
     });
@@ -73,7 +73,7 @@ function Home() {
     }, [])
 
     return (
-        <div className="bg-gray-900 w-full h-full">
+        <div className="bg-blue-900 w-full h-full">
             <div className="w-full h-full flex flex-col">
                 {step >= 0 && (
                     <animated.div style={arrowUpAnim} className="w-full text-center pt-4 z-20">
@@ -87,7 +87,7 @@ function Home() {
                         </button>
                     </animated.div>
                 )}
-                
+            
                 <div className="flex-auto overflow-y-auto overflow-x-hidden py-3">
                     {step === -1 && (
                         <Loader></Loader>
@@ -97,7 +97,7 @@ function Home() {
                             <Header></Header>
                         )}
                     </animated.div>
-                    <animated.div style={aboutAnim}>
+                    <animated.div className="h-full" style={aboutAnim}>
                         {step >= 1 && (
                             <About></About>
                         )}

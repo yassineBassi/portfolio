@@ -157,7 +157,7 @@ function Projects() {
                         fontSize={34}
                         delay={300}
                         speed={100}
-                        text="ABOUT"
+                        text="PROJECTS"
                     >
                     </TextAnimation>
                 </span>
@@ -167,18 +167,21 @@ function Projects() {
             </div>
             <div className="w-full flex my-8">
                 <ul className="mx-auto">
-                { categories.map((category, ind) => (
-                    <li key={ind} className={"inline-block px-4 text-xl uppercase cursor-pointer hover:text-xl border-b-2 mx-1 border-dashed border-transparent hover:bg-white hover:text-indigo-800 p-2 bg-transparent text-gray-400 " + (selectedCategory === category ? " bg-white text-indigo-800" : "")}>
-                        { category }
-                    </li>
-                )) }
+                    { categories.map((category, ind) => (
+                        <li 
+                            key={ind} 
+                            className={"inline-block px-4 text-xl z-20 uppercase cursor-pointer hover:text-xl border-b-2 mx-1 border-dashed border-transparent hover:bg-white hover:text-indigo-800 p-2 bg-transparent font-medium text-green-500 " + (selectedCategory === category ? " bg-green-400 text-indigo-900 " : "")}
+                        >
+                            { category }
+                        </li>
+                    )) }
                 </ul>
             </div>
             <div className="overflow-auto flex-grow">
                 <div className="mb-8 mx-6 lg:mx-40 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
                     { projects.map((project, ind) => (
                         <animated.div style={ projectAnim }>
-                            <div key={ind} className="relative pb-full z-10 border-4 border-gray-900 hover:border-transparent overflow-hidden relative shadow-xl hover:shadow-sm project my-1">
+                            <div key={ind} className="relative pb-full z-10 border-4 border-gray-900 hover:border-transparent overflow-hidden relative shadow-xl hover:shadow-sm project">
                                 <img className="thumbnail" src={ project.image } alt="" />
                                 <div className="flex justify-center items-center project-details">
                                     <div className="text-white text-center overflow-hidden">

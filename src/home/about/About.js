@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useSpring, animated } from 'react-spring';
 import TextAnimation from './../../animations/TextAnimation';
 
@@ -79,32 +79,8 @@ function About(props) {
         delay: 300
     })
 
-    // const skillsAnim = useSpring({
-    //     marginTop: showSkills ? -40 : -100
-    // })
-
-
-    useEffect(() => {
-        // setTimeout(() => {
-        //     setHoveredSkill(0);
-        // }, 1000)
-        // setInterval(() => {
-        //     setHoveredSkill(skill => (skill + 1) % skills.length);
-        // }, 3000)
-    }, [])
-    
-    // const imageAnim = useSpring({
-    //     from: {
-    //         width: 0
-    //     },
-    //     to: {
-    //         width: 500
-    //     },
-    //     delay: 1000
-    // });
-
     return (
-        <div>
+        <div className="flex h-full flex-col">
             <div className="relative text-white text-center">
                 <span className="text-4xl font-bold">
                     <TextAnimation
@@ -122,10 +98,13 @@ function About(props) {
             </div>
             <div className="w-100 text-center mt-6">
                 <img className="mx-auto w-24 h-24 rounded-full ring-1 ring-indigo-500" src={ process.env.PUBLIC_URL + '/avatar.jpg' } alt="" />
-                <span className="text-gray-400 text-3xl mt-4 block">''this is my quote in development ok''</span>
+                <span className="text-green-400 text-2xl mt-4 block">
+                    '' It's not about <b>RIGHT</b> and <b className="text-red-300">WRONG </b> 
+                     it's about <b>BETTER</b> and <b className="text-red-300">WORSE</b> ''
+                </span>
             </div>
             <div className="text-white flex justify-center pt-4 mt-2 z-10 relative">
-                <div className="w-full mx-6 px-4 md:mx-0 md:w-10/12 lg:w-7/12 xl:w-5/12 text-center py-4 border-2 border-double border-indigo-500 ">
+                <div className="w-full mx-6 md:mx-0 md:w-11/12 lg:w-10/12 xl:w-6/12 text-center py-8 border-2 border-double border-green-400 rounded-lg px-4">
                     <span className="text-2xl font-bold block
                     ">
                         <TextAnimation
@@ -137,27 +116,27 @@ function About(props) {
                         </TextAnimation>
                     </span>
                     <animated.div style={descriptionAnim}>
-                        <p className="mt-5 md:mx-12 text-xl">
+                        <p className="mt-5 md:mx-0 text-xl">
                             Since beginning my journey as a freelance designer nearly 10 years ago, I've done remote work for agencies, consulted for startups, and collaborated with talented people to create digital products for both business and consumer use. I'm quietly confident, naturally curious, and perpetually working on improving my chops one design problem at a time.
                         </p>
                     </animated.div>
                 </div>
             </div>
             
-            <div className="w-full md:px-20 lg:px-40 xl:px-40 pb-8 relative z-20 text-white rounded-3xl text-center mt-6">
+            <div className="flex-grow md:px-20 lg:px-40 xl:px-40 pb-8 relative z-20 text-white rounded-3xl text-center flex items-center">
                 <div className="grid grid-cols-1 xl:grid-cols-4 md:grid-cols-2 w-full mt-4">
                     { skills.map((skill, ind) => (
-                        <div key={ ind } className="lg:mt-4 mx-6 md:pb-4 py-2 flex xl:block items-center my-3 md:my-0">
-                            <div className="flex justify-center items-center text-white text-3xl xl:mx-auto" style={{height: 80, width: 80}}>
+                        <div key={ ind } className="lg:mt-4 mx-4 md:pb-4 py-2 flex flex-col items-center my-3 md:my-0 w-full">
+                            <div className="flex justify-center items-center text-white text-3xl xl:mx-auto w-24 h-24">
                                 <animated.div 
-                                    className=" rounded-full bg-white flex items-center justify-center bg-indigo-900 text-white border-4 border-white"
+                                    className=" rounded-full bg-white flex items-center justify-center bg-blue-900 text-green-400 border-4 border-green-400"
                                     style={ iconAnim }
                                 >
                                     <i className={skill.icon}></i>
                                 </animated.div>
                             </div>
-                            <div className="text-left xl:text-center ml-3 xl:ml-0">
-                                <span className="block xl:my-1 font-bold text-2xl"> 
+                            <div className="text-center xl:text-center mt-2">
+                                <span className="block xl:my-1 font-bold text-2xl text-green-400"> 
                                     <TextAnimation
                                         type="fade"
                                         fontSize={12}
@@ -166,7 +145,7 @@ function About(props) {
                                     >
                                     </TextAnimation>
                                 </span>
-                                <div className="relative overflow-hidden">
+                                <div className="relative overflow-hidden mt-2">
                                     <animated.div style={ SkillDescriptionAnim } className="relative">
                                         <span>{ skill.description }</span>
                                     </animated.div>

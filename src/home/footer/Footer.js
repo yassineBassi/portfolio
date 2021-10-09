@@ -1,12 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import TextAnimation from './../../animations/TextAnimation';
 import { animated, useSpring } from 'react-spring';
 
 function Footer() {
-
-    const scrollTop = () => {
-        window.scrollTo({ top: 0, behavior: 'smooth'})
-    }
     
     const lineAnim = useSpring({
         from: {
@@ -19,10 +15,34 @@ function Footer() {
         }, 
         delay: 300
     })
+
+    const inputAnim = useSpring({
+        from: {
+            opacity:0,
+            marginTop: -800
+        }, 
+        to: {
+            opacity:1,
+            marginTop: 0
+        }, 
+        delay: 200
+    })
+    
+    const iconBtnAnim = useSpring({
+        from: {
+            opacity:0,
+            marginTop: -800
+        }, 
+        to: {
+            opacity:1,
+            marginTop: 0
+        }, 
+        delay: 300
+    })
     
     return (
         <div className="text-white text-center flex flex-col h-full lg:px-32">
-            <div className="relative flex-grow z-10 bg-indigo-900 pt-2 pb-4 md:pb-6 rounded-3xl flex flex-col">
+            <div className="relative flex-grow z-10  pt-2 pb-4 md:pb-6 rounded-3xl flex flex-col">
                 <div className="relative text-white text-center">
                     <span className="text-4xl font-bold">
                         <TextAnimation
@@ -38,7 +58,7 @@ function Footer() {
                         <div className="bg-white h-1 w-16 mt-3"></div>
                     </animated.div>
                 </div>
-                <span className="block text-xl px-2 md:px-4 mt-5">
+                <span className="block text-xl px-8 md:px-4 mt-5">
                     <TextAnimation
                         text="Have a question or want to work together?"
                         type="fade"
@@ -46,55 +66,81 @@ function Footer() {
                     >
                     </TextAnimation>
                 </span>
-                <div className="my-3 flex-grow flex flex-col items-center justify-between">
-                    <div className="w-full px-4 ">
-                        <input 
+                <div className="mt-3 flex-grow flex flex-col items-center justify-between">
+                    <div className="w-full flex-grow flex flex-col px-4 ">
+                        <animated.input 
+                            style={ inputAnim }
                             type="text" 
                             placeholder="Full Name" 
-                            className="block bg-gray-800 rounded-2xl px-4 py-6 my-4 w-full h-10 mx-auto focus:outline-none" 
+                            className="block bg-indigo-900 border border-green-400 rounded-2xl px-4 py-6 my-4 w-full h-10 mx-auto focus:outline-none" 
                         />
-                        <input 
+                        <animated.input 
+                            style={ inputAnim }
                             type="text" 
                             placeholder="Enter E-mail" 
-                            className="block bg-gray-800 rounded-2xl px-4 my-4 py-6 w-full h-10 mx-auto focus:outline-none " 
+                            className="block bg-indigo-900 border border-green-400 rounded-2xl px-4 my-4 py-6 w-full h-10 mx-auto focus:outline-none " 
                         />
-                        <textarea 
+                        <animated.textarea 
+                            style={ inputAnim }
                             placeholder="Your Message" 
-                            className="block bg-gray-800 rounded-2xl px-4 my-4 py-3 w-full mx-auto focus:outline-none" 
-                            rows="10"
-                        ></textarea>
+                            className="block bg-indigo-900 border border-green-400 rounded-2xl px-4 my-4 py-3 w-full mx-auto focus:outline-none flex-grow" 
+                        ></animated.textarea>
                     </div>
-                    <div className="w-full pb-8">
+                    <div className="w-full">
                         <button 
-                            className="uppercase py-2 float-center px-6 rounded-2xl text-xl font-bold border border-white text-white hover:bg-white hover:text-indigo-900"
+                            className="uppercase py-2 float-center px-6 rounded-2xl text-xl font-bold border border-green-400 text-white hover:bg-white hover:text-indigo-900 z-20"
                         >
                             Submit
                         </button>
                     </div>
                 </div>
             </div>
-            <div className="-mt-10 z-20 relative">
+            {/* <div className=" z-20 relative">
                 <button onClick={scrollTop} className="w-14 h-14 rounded-2xl shadow-xl bg-white text-indigo-900 text-2xl">
                     <i className="fas fa-angle-double-up"></i>
                 </button>
-            </div>
-            <div className="w-full -mt-8">
-                <div className="flex pt-14 justify-center">
-                    <a target="_blank" rel="noreferrer" href="https://github.com/yassineBassi" className="text-white text-3xl bg-indigo-900 hover:bg-white hover:text-indigo-900 mx-3 rounded-xl w-16">
+            </div> */}
+            <div className="w-full ">
+                <div className="flex justify-center s-20">
+                    <animated.a 
+                        style={ iconBtnAnim } 
+                        target="_blank" 
+                        rel="noreferrer" 
+                        href="https://github.com/yassineBassi" 
+                        className="text-2xl bg-indigo-900 border border-green-400 hover:bg-green-400 hover:text-indigo-900 mx-3 rounded-xl w-16 z-20"
+                    >
                         <i className="fab fa-facebook-f m-4"></i>
-                    </a>
-                    <a target="_blank" rel="noreferrer" href="https://www.linkedin.com/in/yassine-bassi-5b05ba192/" className="text-white bg-indigo-900 text-3xl hover:bg-white hover:text-indigo-900 mx-3 rounded-xl w-16">
+                    </animated.a>
+                    <animated.a 
+                        style={ iconBtnAnim } 
+                        target="_blank" 
+                        rel="noreferrer" 
+                        href="https://www.linkedin.com/in/
+                        yassine-bassi-5b05ba192/" className="bg-indigo-900 border border-green-400 text-2xl hover:bg-green-400 hover:text-indigo-900 mx-3 rounded-xl w-16 z-20"
+                    >
                         <i className="fab fa-linkedin-in m-4"></i>
-                    </a>
-                    <a target="_blank" rel="noreferrer" href="https://github.com/yassineBassi" className="text-white text-3xl bg-indigo-900 hover:bg-white hover:text-indigo-900 mx-3 rounded-xl w-16">
+                    </animated.a>
+                    <animated.a 
+                        style={ iconBtnAnim } 
+                        target="_blank" 
+                        rel="noreferrer" 
+                        href="https://github.com/yassineBassi" 
+                        className="text-2xl bg-indigo-900 border border-green-400 hover:bg-green-400 hover:text-indigo-900 mx-3 rounded-xl w-16 z-20"
+                    >
                         <i className="fab fa-github m-4"></i>
-                    </a>
-                    <a target="_blank" rel="noreferrer" href="https://github.com/yassineBassi" className="text-white text-3xl bg-indigo-900 hover:bg-white hover:text-indigo-900 mx-3 rounded-xl w-16">
+                    </animated.a>
+                    <animated.a 
+                        style={ iconBtnAnim } 
+                        target="_blank" 
+                        rel="noreferrer" 
+                        href="https://github.com/yassineBassi" 
+                        className="text-2xl bg-indigo-900 border border-green-400 hover:bg-green-400 hover:text-indigo-900 mx-3 rounded-xl w-16 z-20" 
+                    >
                         <i className="fab fa-google-plus-g m-4"></i>
-                    </a>
+                    </animated.a>
                 </div>
                 <div className="pt-4">
-                    <span className="text-lg">BASSI YASSINE @ 2021</span>
+                    <span className="text-lg">BASSI YASSINE @ { (new Date()).toJSON().slice(0, 4) }</span>
                 </div>
             </div>
         </div>
