@@ -1,25 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Projects.css'
 import { useSpring, animated } from 'react-spring';
 import TextAnimation from './../../animations/TextAnimation';
-
-
+import ProjectModel from './ProjectModal';
 const selectedCategory = 'Mobile Apps'
 
 function Projects() {
+    const [displayProject , setDisplayProject ] = useState(0)
 
     const projects = [
         {
-            image: process.env.PUBLIC_URL + '/website.jpg',
-            name: "Dolphy",
-            techs: [
-                "Angular",
-                "expressJs",
-                'mongodb'
-            ]
-        },
-        {
-            image: process.env.PUBLIC_URL + '/website.jpg',
+            images: [
+                process.env.PUBLIC_URL + '/website.jpg',
+                process.env.PUBLIC_URL + '/website.jpg',
+                process.env.PUBLIC_URL + '/website.jpg',
+                process.env.PUBLIC_URL + '/website.jpg',
+                process.env.PUBLIC_URL + '/website.jpg',
+            ],
             name: "project name",
             techs: [
                 "Angular",
@@ -28,7 +25,10 @@ function Projects() {
             ]
         },
         {
-            image: process.env.PUBLIC_URL + '/website.jpg',
+            images: [
+                process.env.PUBLIC_URL + '/website.jpg',
+                process.env.PUBLIC_URL + '/website.jpg',
+            ],
             name: "project name",
             techs: [
                 "Angular",
@@ -37,7 +37,12 @@ function Projects() {
             ]
         },
         {
-            image: process.env.PUBLIC_URL + '/website.jpg',
+            images: [
+                process.env.PUBLIC_URL + '/website.jpg',
+                process.env.PUBLIC_URL + '/website.jpg',
+                process.env.PUBLIC_URL + '/website.jpg',
+                process.env.PUBLIC_URL + '/website.jpg',
+            ],
             name: "project name",
             techs: [
                 "Angular",
@@ -46,7 +51,9 @@ function Projects() {
             ]
         },
         {
-            image: process.env.PUBLIC_URL + '/website.jpg',
+            images: [
+                process.env.PUBLIC_URL + '/website.jpg',
+            ],
             name: "project name",
             techs: [
                 "Angular",
@@ -55,7 +62,12 @@ function Projects() {
             ]
         },
         {
-            image: process.env.PUBLIC_URL + '/website.jpg',
+            images: [
+                process.env.PUBLIC_URL + '/website.jpg',
+                process.env.PUBLIC_URL + '/website.jpg',
+                process.env.PUBLIC_URL + '/website.jpg',
+                process.env.PUBLIC_URL + '/website.jpg',
+            ],
             name: "project name",
             techs: [
                 "Angular",
@@ -64,7 +76,10 @@ function Projects() {
             ]
         },
         {
-            image: process.env.PUBLIC_URL + '/website.jpg',
+            images: [
+                process.env.PUBLIC_URL + '/website.jpg',
+                process.env.PUBLIC_URL + '/website.jpg',
+            ],
             name: "project name",
             techs: [
                 "Angular",
@@ -73,7 +88,11 @@ function Projects() {
             ]
         },
         {
-            image: process.env.PUBLIC_URL + '/website.jpg',
+            images: [
+                process.env.PUBLIC_URL + '/website.jpg',
+                process.env.PUBLIC_URL + '/website.jpg',
+                process.env.PUBLIC_URL + '/website.jpg',
+            ],
             name: "project name",
             techs: [
                 "Angular",
@@ -82,7 +101,12 @@ function Projects() {
             ]
         },
         {
-            image: process.env.PUBLIC_URL + '/website.jpg',
+            images: [
+                process.env.PUBLIC_URL + '/website.jpg',
+                process.env.PUBLIC_URL + '/website.jpg',
+                process.env.PUBLIC_URL + '/website.jpg',
+                process.env.PUBLIC_URL + '/website.jpg',
+            ],
             name: "project name",
             techs: [
                 "Angular",
@@ -91,7 +115,13 @@ function Projects() {
             ]
         },
         {
-            image: process.env.PUBLIC_URL + '/website.jpg',
+            images: [
+                process.env.PUBLIC_URL + '/website.jpg',
+                process.env.PUBLIC_URL + '/website.jpg',
+                process.env.PUBLIC_URL + '/website.jpg',
+                process.env.PUBLIC_URL + '/website.jpg',
+                process.env.PUBLIC_URL + '/website.jpg',
+            ],
             name: "project name",
             techs: [
                 "Angular",
@@ -100,16 +130,10 @@ function Projects() {
             ]
         },
         {
-            image: process.env.PUBLIC_URL + '/website.jpg',
-            name: "project name",
-            techs: [
-                "Angular",
-                "expressJs",
-                'mongodb'
-            ]
-        },
-        {
-            image: process.env.PUBLIC_URL + '/website.jpg',
+            images: [
+                process.env.PUBLIC_URL + '/website.jpg',
+                process.env.PUBLIC_URL + '/website.jpg',
+            ],
             name: "project name",
             techs: [
                 "Angular",
@@ -150,6 +174,9 @@ function Projects() {
 
     return (
         <div className='w-full h-full flex flex-col'>
+            {displayProject && (
+                    <ProjectModel project={displayProject}></ProjectModel>
+            )}
             <div className="relative text-white text-center">
                 <span className="text-4xl font-bold">
                     <TextAnimation
@@ -182,7 +209,7 @@ function Projects() {
                     { projects.map((project, ind) => (
                         <animated.div style={ projectAnim }>
                             <div key={ind} className="relative pb-full z-10 border-4 border-gray-900 hover:border-transparent overflow-hidden relative shadow-xl hover:shadow-sm project">
-                                <img className="thumbnail" src={ project.image } alt="" />
+                                <img className="thumbnail" src={ project.images[0] } alt="" />
                                 <div className="flex justify-center items-center project-details">
                                     <div className="text-white text-center overflow-hidden">
                                         <span className="project-info">
@@ -193,7 +220,10 @@ function Projects() {
                                                 ))}
                                             </span>
                                         </span>
-                                        <button className="p-2 border learn-more-btn border-white mt-7 hover:bg-white hover:text-black learn-more-btn" >
+                                        <button 
+                                            onClick={() => setDisplayProject(project)}
+                                            className="p-2 border learn-more-btn border-white mt-7 hover:bg-white hover:text-black learn-more-btn" 
+                                        >
                                             Learn more
                                         </button>
                                     </div>

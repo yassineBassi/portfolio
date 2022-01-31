@@ -8,8 +8,9 @@ body, html{
 }
 /* width */
 ::-webkit-scrollbar {
-    width: 16px;
+    width: 12px;
     height: 16px;
+    z-index: 3000;
 }
 
 /* Track */
@@ -20,12 +21,12 @@ body, html{
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: #0f4a8a;
+    background: transparent;
     border-radius: 100vh;
-    border: 3px solid #1fa572;
+    border: 2px solid #1fa572;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-    background: #c4a912;
+    background: #1fa572;
 }

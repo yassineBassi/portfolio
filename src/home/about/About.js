@@ -80,6 +80,7 @@ function About(props) {
     })
 
     return (
+        
         <div className="flex h-full flex-col">
             <div className="relative text-white text-center">
                 <span className="text-4xl font-bold">

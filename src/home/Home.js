@@ -50,10 +50,10 @@ function Home() {
 
     const arrowDownAnim = useSpring({
         from: {
-            color: step >= stepsLength - 1 ? 'grey' : 'transparent'
+            color: step >= stepsLength ? 'grey' : 'transparent'
         },
         to: {
-            color: step > stepsLength - 1 ? 'grey' : '#09AA8D'
+            color: step >= stepsLength ? 'grey' : '#09AA8D'
         },
         loop: true
     });
@@ -76,7 +76,7 @@ function Home() {
         <div className="bg-blue-900 w-full h-full">
             <div className="w-full h-full flex flex-col">
                 {step >= 0 && (
-                    <animated.div style={arrowUpAnim} className="w-full text-center pt-4 z-20">
+                    <animated.div style={arrowUpAnim} className="w-full text-center pt-4 z-30">
                         <button 
                             onClick={ previousStep }
                             className={"text-2xl uppercase font-bold " }
@@ -115,7 +115,7 @@ function Home() {
                 </div>
 
                 {step >= 0 && (
-                    <animated.div style={arrowDownAnim} className="w-full mt-2 flex items-end justify-center pb-2 z-20">
+                    <animated.div style={arrowDownAnim} className="w-full mt-2 flex items-end justify-center pb-2 z-40">
                         <button 
                             onClick={ nextStep }
                             className="text-2xl uppercase font-bold"

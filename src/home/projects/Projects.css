@@ -42,3 +42,20 @@
 .project:hover>img{
     opacity: 0;
 }
+
+.prevCard {
+    left: 0;
+}
+
+.activeCard {
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.nextCard {
+    right: 0;
+}
+
+.image-slider{
+    transition: left 400ms ease;
+}
